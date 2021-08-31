@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "baseUrl": ".",
+    "paths": {
+      "@zto-sv/plugin": ["./"],
+      "@zto-sv/plugin/*": ["./*"]
+    }
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}

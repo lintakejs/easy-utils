@@ -1,0 +1,8 @@
+{
+  "name": "@zto-plugin/regs",
+  "types": "../lib/types/regs/index.d.ts",
+  "main": "../lib/cjs/regs/index.js",
+  "module": "../lib/esm5/regs/index.js",
+  "es2015": "../lib/esm/regs/index.js",
+  "sideEffects": false
+}

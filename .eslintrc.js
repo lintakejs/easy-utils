@@ -1,0 +1,46 @@
+module.exports = {
+  plugins: ["@typescript-eslint"],
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+    env: { es6: true },
+    sourceType: "module",
+  },
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    serviceworker: true,
+  },
+  extends: [
+    "plugin:@typescript-eslint/recommended",
+    "standard",
+  ],
+  rules: {
+    // 设置默认eslint规则
+    "one-var": 0,
+    "arrow-parens": 0,
+    "generator-star-spacing": 0,
+    "no-debugger": 0,
+    "no-console": 0,
+    semi: [2, "always"],
+    "no-extra-semi": 2,
+    "space-before-function-paren": 0,
+    eqeqeq: 0,
+    "spaced-comment": 0,
+    "no-useless-escape": 0,
+    "no-tabs": 0,
+    "no-mixed-spaces-and-tabs": 0,
+    "new-cap": 0,
+    camelcase: 0,
+    "no-new": 0,
+    indent: "off",
+    semi: "off",
+    // 设置typescript-eslint规则
+    // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/docs/rules
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-this-alias": 0,
+    "@typescript-eslint/no-explicit-any": "off",
+  },
+};
