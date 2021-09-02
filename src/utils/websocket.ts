@@ -1,5 +1,5 @@
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket'
-import { interval, timer, Subscription } from 'rxjs'
+import { timer, Subscription } from 'rxjs'
 import { EventEmitter } from './eventEmitter';
 
 // websocket配置
@@ -66,6 +66,7 @@ export class WebSocketCore<T extends Record<string, any>> {
    * @param string websocket连接地址
    */
   public async createSocket() {
+    this.clear()
     const url = await this.connectUrlGenerator()
     if (!url) throw new Error('websocket地址异常！')
     // 防止多实例连接
@@ -134,7 +135,7 @@ export class WebSocketCore<T extends Record<string, any>> {
    * @description 发送心跳
    */
   private hearBeat() {
-    this.intervaler = interval(this.hearBeatTime).subscribe(() => {
+    this.intervaler = timer(0, this.hearBeatTime).subscribe(() => {
       const hdData = this.hdDataGenerator()
       this.send(hdData)
       this.hdQueue.push(hdData)
