@@ -547,7 +547,7 @@
         "affectsGlobalScope": false
       },
       "../../src/utils/websocket.ts": {
-        "version": "bf10caab0141f8d51e1d0c46da39b3da1fbef6c0aa9ef2c8dfdd08bb305fb02b",
+        "version": "2f32088c942b4e3ba8e018e2f7700c7c5190af7ac79f414442f1f7b5beaa5a67",
         "signature": "68af23a98165f255478d26ff8e9996fdb4fcc47f424dde72273b2380dbc6957a",
         "affectsGlobalScope": false
       },

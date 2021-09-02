@@ -111,7 +111,7 @@ export class WebSocketCore<T extends Record<string, any>> {
    * @description 关闭socket
    */
   public close() {
-    this.ws.complete()
+    this.ws && this.ws.complete()
   }
 
   /**

@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { EventEmitter, WebSocketCore } from 'lin_easy-utils'
+import { EventEmitter, WebSocketCore } from '../../../lib/esm5/'
 
 const emitter = new EventEmitter()
 emitter.on(WebSocketCore.open, () => {
@@ -24,7 +24,7 @@ const socketManager = new WebSocketCore({
   hearBeatTime: 5000,
   connectUrlGenerator: async () => {
     const url = await new Promise((resolve) => {
-      resolve('ws://localhost:3002/socket.io')
+      resolve('ws://121.5.161.224:3002/socket.io')
     })
 
     return url
@@ -47,6 +47,10 @@ function openSocket() {
   socketManager.createSocket()
 }
 
+function closeSocket() {
+  socketManager.close()
+}
+
 function sendMsg() {
   const sendObj = {
     event: 'message',
@@ -62,6 +66,7 @@ function stopHeadBeat() {
 <ClientOnly>
 <input type='textarea' v-model='inputMsg' />
 <button @click="openSocket">开启socket连接</button>
+<button @click="closeSocket">关闭socket连接</button>
 <button @click="sendMsg">发送消息</button>
 <button @click="stopHeadBeat">{{sendHearBeat ? '暂停' : '开启'}}服务端心跳</button>
 </ClientOnly>

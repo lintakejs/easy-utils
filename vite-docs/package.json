@@ -11,6 +11,6 @@
     "vitepress": "^0.17.0"
   },
   "dependencies": {
-    "lin_easy-utils": "^1.0.0"
+    "lin_easy-utils": "^1.0.3"
   }
 }
