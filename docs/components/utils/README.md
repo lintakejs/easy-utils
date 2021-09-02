@@ -85,4 +85,7 @@ axiosFetch.delete
 
 // put
 axiosFetch.put
+
+// cancelAll
+axiosFetch.cancalAll
 ```

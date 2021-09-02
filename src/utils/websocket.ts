@@ -8,6 +8,8 @@ interface WebSocketOptions<T> {
   connectUrlGenerator: () => Promise<string>;
   // 心跳包生成器
   hdDataGenerator: () => T;
+  // 服务端心跳包验证器
+  hdDataValidtor: (res: T) => boolean;
   // 心跳间隔时间
   hearBeatTime?: number;
   // 心跳包超时重连
@@ -21,6 +23,7 @@ class WebSocketCore<T extends Record<string, any>> {
   static readonly receve = Symbol('receve')
   static readonly send = Symbol('send')
   static readonly timeout = Symbol('timeout')
+  static readonly message = Symbol('message')
 
   // 发布订阅模式 事件总线
   public eventEmitter!: EventEmitter;
@@ -30,8 +33,10 @@ class WebSocketCore<T extends Record<string, any>> {
   private hearBeatTime: number;
   // ws 实例
   public ws!: WebSocketSubject<T>;
-  // 消息包生成器
-  private hdDataGenerator: () => T
+  // 心跳包生成器
+  private hdDataGenerator: () => T;
+  // 服务端心跳包验证函数
+  private hdDataValidtor: (res: T) => boolean;
   // 心跳发出定时器
   private intervaler!: Subscription;
   // 轮询心跳定时器
@@ -51,6 +56,7 @@ class WebSocketCore<T extends Record<string, any>> {
     this.connectUrlGenerator = options.connectUrlGenerator
     this.hearBeatTime = options.hearBeatTime || 3000
     this.hdDataGenerator = options.hdDataGenerator
+    this.hdDataValidtor = options.hdDataValidtor
     this.timeoutReconnect = options.timeoutReconnect || true
     this.eventEmitter = eventEmitter
   }
@@ -59,7 +65,7 @@ class WebSocketCore<T extends Record<string, any>> {
    * @description 建立连接
    * @param string websocket连接地址
    */
-  public async init() {
+  public async createSocket() {
     const url = await this.connectUrlGenerator()
     if (!url) throw new Error('websocket地址异常！')
     // 防止多实例连接
@@ -80,6 +86,14 @@ class WebSocketCore<T extends Record<string, any>> {
             this.eventEmitter.emit(WebSocketCore.close)
           }
         }
+      }
+    })
+
+    this.ws.subscribe((res: T) => {
+      if (this.hdDataValidtor(res)) {
+        this.clearMissHearBeatNum()
+      } else {
+        this.eventEmitter.emit(WebSocketCore.message, res)
       }
     })
   }
@@ -103,9 +117,17 @@ class WebSocketCore<T extends Record<string, any>> {
    * @description 清除标记
    */
   private clear() {
-    this.missBeatNum = 0
+    this.clearMissHearBeatNum()
     this.intervaler && this.intervaler.unsubscribe()
     this.timer && this.timer.unsubscribe()
+  }
+
+  /**
+   * @description 清除心跳丢失标记
+   */
+  private clearMissHearBeatNum() {
+    this.hdQueue = []
+    this.missBeatNum = 0
   }
 
   /**
@@ -124,7 +146,7 @@ class WebSocketCore<T extends Record<string, any>> {
           if (this.missBeatNum >= this.maxMissBeatNum) {
             // 需要超时重连，否则抛出事件让事件总线处理
             if (this.timeoutReconnect) {
-              this.init()
+              this.createSocket()
             } else {
               this.eventEmitter.emit(WebSocketCore.timeout)
             }
