@@ -20,10 +20,10 @@ export class WebSocketCore<T extends Record<string, any>> {
   // 订阅监听模式的事件key
   static readonly open = Symbol('open')
   static readonly close = Symbol('close')
-  static readonly receve = Symbol('receve')
   static readonly send = Symbol('send')
-  static readonly timeout = Symbol('timeout')
   static readonly message = Symbol('message')
+  static readonly timeout = Symbol('timeout')
+  static readonly reconnect = Symbol('reconnect')
 
   // 发布订阅模式 事件总线
   public eventEmitter!: EventEmitter;
@@ -69,7 +69,7 @@ export class WebSocketCore<T extends Record<string, any>> {
     const url = await this.connectUrlGenerator()
     if (!url) throw new Error('websocket地址异常！')
     // 防止多实例连接
-    if (this.ws && this.ws.closed) this.ws.complete()
+    if (this.ws && !this.ws.closed) this.ws.complete()
     this.ws = webSocket({
       url,
       openObserver: {
@@ -146,6 +146,7 @@ export class WebSocketCore<T extends Record<string, any>> {
           if (this.missBeatNum >= this.maxMissBeatNum) {
             // 需要超时重连，否则抛出事件让事件总线处理
             if (this.timeoutReconnect) {
+              this.eventEmitter.emit(WebSocketCore.reconnect)
               this.createSocket()
             } else {
               this.eventEmitter.emit(WebSocketCore.timeout)

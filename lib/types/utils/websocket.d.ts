@@ -10,10 +10,10 @@ interface WebSocketOptions<T> {
 export declare class WebSocketCore<T extends Record<string, any>> {
     static readonly open: unique symbol;
     static readonly close: unique symbol;
-    static readonly receve: unique symbol;
     static readonly send: unique symbol;
-    static readonly timeout: unique symbol;
     static readonly message: unique symbol;
+    static readonly timeout: unique symbol;
+    static readonly reconnect: unique symbol;
     eventEmitter: EventEmitter;
     private connectUrlGenerator;
     private hearBeatTime;
