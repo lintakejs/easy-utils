@@ -1,5 +1,5 @@
 declare type EventEmitterFn = (...args: unknown[]) => void;
-export default class EventEmitter {
+export declare class EventEmitter {
     private caches;
     on(eventName: string | symbol, fn: EventEmitterFn): void;
     once(eventName: string | symbol, fn: EventEmitterFn): void;

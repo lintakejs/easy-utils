@@ -1,6 +1,6 @@
 {
-  "name": "easy-utils",
-  "version": "4.0.2",
+  "name": "lin_easy-utils",
+  "version": "1.0.0",
   "description": "some util funtion / regs / vue2 filter function collection",
   "author": "lintakejs <373988402@qq.com>",
   "main": "./lib/cjs/index.js",

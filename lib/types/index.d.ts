@@ -1,5 +1,7 @@
 export { CacheRx } from './utils/cacheRx';
 export type { CacheOptions, CacheObj } from './utils/cacheRx';
+export { EventEmitter } from './utils/eventEmitter';
+export { WebSocketCore } from './utils/websocket';
 export { checkType } from './utils/checkType';
 export { bubbleSort } from './utils/bubbleSort';
 export { quickSort } from './utils/quickSort';

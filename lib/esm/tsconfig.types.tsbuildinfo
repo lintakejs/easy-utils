@@ -531,6 +531,31 @@
         "signature": "fe3b38296a4de5896c7e764b5064babbea9739f7161a5c0f4379eaed6c05db1f",
         "affectsGlobalScope": false
       },
+      "../../src/utils/eventemitter.ts": {
+        "version": "7f430df2f9e180aea3bc0beb621f3a6b1ab4a67291291b68db4e00bcf30243ef",
+        "signature": "ebcb4f7cf8bcf8b1a29cc973d49fc02607fca7c77d6de59686a3acd22b87f7cf",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/_rxjs@6.6.7@rxjs/internal/observable/dom/websocketsubject.d.ts": {
+        "version": "1382fd829c4aed94dbf48c12b2e612993e1b77965bd141d6ca3e07d55e467be7",
+        "signature": "1382fd829c4aed94dbf48c12b2e612993e1b77965bd141d6ca3e07d55e467be7",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/_rxjs@6.6.7@rxjs/internal/observable/dom/websocket.d.ts": {
+        "version": "772de7835f22689ecc41724bfaad1991770aad0a155ba7b7c2526b315d9fe19c",
+        "signature": "772de7835f22689ecc41724bfaad1991770aad0a155ba7b7c2526b315d9fe19c",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/_rxjs@6.6.7@rxjs/websocket/index.d.ts": {
+        "version": "8617cc109bd63da63d64ea739fc9f4c2515d0256b734282be538a8a705c4cc41",
+        "signature": "8617cc109bd63da63d64ea739fc9f4c2515d0256b734282be538a8a705c4cc41",
+        "affectsGlobalScope": false
+      },
+      "../../src/utils/websocket.ts": {
+        "version": "55248ebd4ffc1aeb970d546b72bd10ea0585fbd4a7c15cad622f169ce8f27b1a",
+        "signature": "6f528547666e08de2169d4aa97196b44f56f67900ceceb7129dd4407dbece7d9",
+        "affectsGlobalScope": false
+      },
       "../../src/utils/checktype.ts": {
         "version": "a03d566112e8e3159695cfda4b950c53c01495af0a8097221302824cd3cb07e4",
         "signature": "0a638b08d3a1f51b2ce0cee8008e3fb6a4e00921e88ecca8684e1c685782107b",
@@ -632,8 +657,8 @@
         "affectsGlobalScope": false
       },
       "../../src/index.ts": {
-        "version": "5253b2c57e5671ed38b279236972b0644ebef48dde065f39fe28bb1b994db587",
-        "signature": "39f295a49f8661e4676c1a2e8824685c42ff0d1b15e6d1ae6090b8d33b910dc5",
+        "version": "865a2ba6205d4b5d07fd33d46890517f0c6b2bca98eee11fe3f881dfc2bbace9",
+        "signature": "6cc82d276a6970a60382dc957409fbcd3bf76275f9f4d82be3d2509076776498",
         "affectsGlobalScope": false
       },
       "../../src/filters/desensitization.ts": {
@@ -664,31 +689,6 @@
       "../../src/filters/index.ts": {
         "version": "655bb889ff4aabdfecc1cf33b9649df9bc59ef6b680b09eebcf94ebd1bb77269",
         "signature": "0d6d10d08906abd36de053faeea5c7af4ac41c5be099efa7c850c2cb420cd73d",
-        "affectsGlobalScope": false
-      },
-      "../../src/utils/eventemitter.ts": {
-        "version": "66af25743c8b1dcc48f574addce5cfa973f55baecf7ee88b8e3a280140729c33",
-        "signature": "b726c696f7d19fbfa3b32c481604cf1ad962f4ebc9e19820f79a26791cb05ee4",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/_rxjs@6.6.7@rxjs/internal/observable/dom/websocketsubject.d.ts": {
-        "version": "1382fd829c4aed94dbf48c12b2e612993e1b77965bd141d6ca3e07d55e467be7",
-        "signature": "1382fd829c4aed94dbf48c12b2e612993e1b77965bd141d6ca3e07d55e467be7",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/_rxjs@6.6.7@rxjs/internal/observable/dom/websocket.d.ts": {
-        "version": "772de7835f22689ecc41724bfaad1991770aad0a155ba7b7c2526b315d9fe19c",
-        "signature": "772de7835f22689ecc41724bfaad1991770aad0a155ba7b7c2526b315d9fe19c",
-        "affectsGlobalScope": false
-      },
-      "../../node_modules/_rxjs@6.6.7@rxjs/websocket/index.d.ts": {
-        "version": "8617cc109bd63da63d64ea739fc9f4c2515d0256b734282be538a8a705c4cc41",
-        "signature": "8617cc109bd63da63d64ea739fc9f4c2515d0256b734282be538a8a705c4cc41",
-        "affectsGlobalScope": false
-      },
-      "../../src/utils/websocket.ts": {
-        "version": "e99a56ea38bdb86f91f25f208dc70122bc70cbb60ac01bac1f1d7ec2ccfa0d84",
-        "signature": "e46a4f539d9035bb30d9c20322f7ab5c804510701d17706b7feb10bc8b88324b",
         "affectsGlobalScope": false
       },
       "../../node_modules/_@babel_types@7.15.0@@babel/types/lib/index.d.ts": {
@@ -2036,13 +2036,15 @@
         "../../src/utils/checktype.ts",
         "../../src/utils/client.ts",
         "../../src/utils/compareobj.ts",
+        "../../src/utils/eventemitter.ts",
         "../../src/utils/fetch.ts",
         "../../src/utils/imagecompress.ts",
         "../../src/utils/linkedstack.ts",
         "../../src/utils/objtoformdata.ts",
         "../../src/utils/phonenumberformat.ts",
         "../../src/utils/queue.ts",
-        "../../src/utils/quicksort.ts"
+        "../../src/utils/quicksort.ts",
+        "../../src/utils/websocket.ts"
       ],
       "../../src/regs/completemobilephone.ts": [
         "../../node_modules/_@types_node@16.7.1@@types/node/util.d.ts"
@@ -3061,13 +3063,15 @@
         "../../src/utils/checktype.ts",
         "../../src/utils/client.ts",
         "../../src/utils/compareobj.ts",
+        "../../src/utils/eventemitter.ts",
         "../../src/utils/fetch.ts",
         "../../src/utils/imagecompress.ts",
         "../../src/utils/linkedstack.ts",
         "../../src/utils/objtoformdata.ts",
         "../../src/utils/phonenumberformat.ts",
         "../../src/utils/queue.ts",
-        "../../src/utils/quicksort.ts"
+        "../../src/utils/quicksort.ts",
+        "../../src/utils/websocket.ts"
       ],
       "../../src/regs/index.ts": [
         "../../src/regs/completemobilephone.ts",

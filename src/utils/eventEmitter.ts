@@ -1,6 +1,6 @@
 type EventEmitterFn = (...args: unknown[]) => void
 
-export default class EventEmitter {
+export class EventEmitter {
   // 事件中心
   private caches = new Map<string | symbol, Array<EventEmitterFn>>();
 

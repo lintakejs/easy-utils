@@ -1,6 +1,6 @@
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket'
 import { interval, timer, Subscription } from 'rxjs'
-import EventEmitter from './eventEmitter';
+import { EventEmitter } from './eventEmitter';
 
 // websocket配置
 interface WebSocketOptions<T> {
@@ -16,7 +16,7 @@ interface WebSocketOptions<T> {
   timeoutReconnect?: boolean;
 }
 
-class WebSocketCore<T extends Record<string, any>> {
+export class WebSocketCore<T extends Record<string, any>> {
   // 订阅监听模式的事件key
   static readonly open = Symbol('open')
   static readonly close = Symbol('close')
@@ -156,5 +156,3 @@ class WebSocketCore<T extends Record<string, any>> {
     })
   }
 }
-
-export default WebSocketCore

@@ -1,5 +1,5 @@
 import { WebSocketSubject } from 'rxjs/webSocket';
-import EventEmitter from './eventEmitter';
+import { EventEmitter } from './eventEmitter';
 interface WebSocketOptions<T> {
     connectUrlGenerator: () => Promise<string>;
     hdDataGenerator: () => T;
@@ -7,7 +7,7 @@ interface WebSocketOptions<T> {
     hearBeatTime?: number;
     timeoutReconnect?: boolean;
 }
-declare class WebSocketCore<T extends Record<string, any>> {
+export declare class WebSocketCore<T extends Record<string, any>> {
     static readonly open: unique symbol;
     static readonly close: unique symbol;
     static readonly receve: unique symbol;
@@ -55,5 +55,5 @@ declare class WebSocketCore<T extends Record<string, any>> {
      */
     private hearBeat;
 }
-export default WebSocketCore;
+export {};
 //# sourceMappingURL=websocket.d.ts.map
