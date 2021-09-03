@@ -771,10 +771,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-lin_easy-utils@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/lin_easy-utils/-/lin_easy-utils-1.0.3.tgz#e4c748e0a229a3f5278386bf915bdb3725280bc5"
-  integrity sha512-4h8GPvce000stm7azk36g95cBhHTWD75/2KCLHz+oz4kV+896MsNjdWVx9xp994V0s8JriHV2a7XzAX8x1+nsw==
+lin_easy-utils@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/lin_easy-utils/-/lin_easy-utils-1.0.4.tgz#a518072e8d5bfe0f25e7fadb2bff6d9c0a9e3f19"
+  integrity sha512-eanz/+S5S/MZb0Uy/prioL688XBJ8E9vz61PXGb9cA1qzecRd/GlQNc22ezFlJc2JCR/A8FYCpA5F6rnz4Zkvg==
 
 linkify-it@^3.0.1:
   version "3.0.2"

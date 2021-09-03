@@ -1,4 +1,0 @@
-- [easy-utils](components/)
-  - [filters](components/filters/)
-  - [regs](components/regs/)
-  - [utils](components/utils/)
