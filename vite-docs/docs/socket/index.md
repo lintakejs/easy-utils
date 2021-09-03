@@ -5,7 +5,7 @@ webSocketCore 是基于rxjs/socket包封装，通过EventEmitter通知订阅者�
 
 <script setup>
 import { ref } from 'vue'
-import { EventEmitter, WebSocketCore } from '../../../lib/esm5/'
+import { EventEmitter, WebSocketCore } from 'lin_easy-utils'
 
 const emitter = new EventEmitter()
 emitter.on(WebSocketCore.open, () => {
