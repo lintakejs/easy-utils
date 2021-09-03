@@ -1,11 +1,16 @@
 import { WebSocketSubject } from 'rxjs/webSocket';
 import { EventEmitter } from './eventEmitter';
 interface WebSocketOptions<T> {
+    socketConfig?: SocketConfig;
     connectUrlGenerator: () => Promise<string>;
     hdDataGenerator: () => T;
     hdDataValidtor: (res: T) => boolean;
     hearBeatTime?: number;
     timeoutReconnect?: boolean;
+}
+interface SocketConfig {
+    protocol?: string | string[];
+    binaryType?: 'blob' | 'arraybuffer';
 }
 export declare class WebSocketCore<T extends Record<string, any>> {
     static readonly open: unique symbol;
@@ -14,6 +19,7 @@ export declare class WebSocketCore<T extends Record<string, any>> {
     static readonly message: unique symbol;
     static readonly timeout: unique symbol;
     static readonly reconnect: unique symbol;
+    private socketConfig?;
     eventEmitter: EventEmitter;
     private connectUrlGenerator;
     private hearBeatTime;

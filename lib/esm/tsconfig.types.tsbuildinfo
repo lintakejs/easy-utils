@@ -552,8 +552,8 @@
         "affectsGlobalScope": false
       },
       "../../src/utils/websocket.ts": {
-        "version": "2f32088c942b4e3ba8e018e2f7700c7c5190af7ac79f414442f1f7b5beaa5a67",
-        "signature": "d0aa9f95ab62f896abfcd9fc769da67ec97d4ac645ef12ce7486a9ab9eaa3feb",
+        "version": "d26bd6bf99c4f804e0f331f1955712b546897d4fdcba636195a6edc13aaee81c",
+        "signature": "ab8f8597d958ac3b42fc057ed24b1879b0be89eede842b534a86b8f0dec6981a",
         "affectsGlobalScope": false
       },
       "../../src/utils/checktype.ts": {
