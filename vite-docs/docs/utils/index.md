@@ -30,25 +30,61 @@ interface ClientInfo {
   qq: boolean;
 }
 
-import { utils } from 'easy-utils'
+import { client } from 'easy-utils'
 
-utils.client(): ClientInfo
+client(): ClientInfo
 ```
 
 ### phoneNumberFormat（手机号码格式化显示）
 
 ```javascript
-import { utils } from 'easy-utils'
+import { phoneNumberFormat } from 'easy-utils'
 
-utils.phoneNumberFormat('18947200145') => '189 4720 0145'
+phoneNumberFormat('18947200145') => '189 4720 0145'
 ```
 
+### checkType（获取类型）
+```javascript
+import { checkType } from 'easy-utils'
+
+checkType([]) => 'array'
+```
+
+### canvasDataBase64（图片压缩）
+```javascript
+import { canvasDataBase64 } from 'easy-utils'
+
+canvasDataBase64('图片网络路径' | '图片文件', quality: number) => base64
+```
+
+### objToFormData（普通对象转FormData）
+```javascript
+import { objToFormData } from 'easy-utils'
+
+objToFormData({ 'text': 'abc' }) => FormData({ 'text': 'abc' })
+```
+
+### EventEmitter（事件总线）
+```javascript
+import { EventEmitter } from 'easy-utils'
+
+const emitter = new EventEmitter()
+// on
+emitter.on(key, fn)
+// once
+emitter.once(key, fn)
+// emit
+emitter.emit(key, ...args)
+// off
+emitter.off(key, fn)
+```
 ### fetch（对axios封装）
 
 可避免相同请求同时发送的可配置封装
 
+#### 使用
 ```javascript
-import { utils } from 'easy-utils'
+import { fetch } from 'easy-utils'
 
 /**
 * 对于axios的基础属性
@@ -72,7 +108,7 @@ const config = {
   cacheRequestFn?: 'cancel' | 'return';
 }
 
-const axiosFetch =  new utils.fetch(config)
+const axiosFetch =  new fetch(config)
 
 // post
 axiosFetch.post
@@ -88,4 +124,42 @@ axiosFetch.put
 
 // cancelAll
 axiosFetch.cancalAll
+```
+#### 关于vue3的实践
+```javascript
+/**
+ * @description 通过fetch封装后的axios，提供了发出重复请求后不执行的配置。
+ * 如果我们要对cancel方式进行处理，比如此hooks执行请求，需要去cancel掉前置请求，
+ * 同时设置一个loading来处理请求状态，直到真实请求返回，
+ * 可以通过绑定在fetch封装后的promise对象上cancel方法来处理。
+*/
+function useCancelRepeatRequest<F>(
+  fetchDataFun: (...args: unkown[]) => F
+) {
+  const loading = ref(false)
+  let requestFn: null | F = null
+  
+  async function requestData(...args: unkown[]) {
+    requestFn && requestFn.cancel && requestFn.cancel();
+    requestFn = fetchDataFun(...args);
+    try {
+      loading.value = true;
+      const response = await requestFn;
+      loading.value = false;
+      requestFn = null;
+      return response;
+    } catch (e) {
+      if (!axios.isCancel(e)) {
+        loading.value = false;
+        requestFn = null;
+      }
+      throw new Error(e);
+    }
+  }
+
+  return {
+    loading,
+    requestData
+  };
+}
 ```

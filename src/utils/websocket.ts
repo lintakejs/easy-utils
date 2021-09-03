@@ -4,6 +4,8 @@ import { EventEmitter } from './eventEmitter';
 
 // websocket配置
 interface WebSocketOptions<T> {
+  // socket 其他的一些配置
+  socketConfig?: SocketConfig;
   // 注册连接
   connectUrlGenerator: () => Promise<string>;
   // 心跳包生成器
@@ -15,6 +17,10 @@ interface WebSocketOptions<T> {
   // 心跳包超时重连
   timeoutReconnect?: boolean;
 }
+interface SocketConfig {
+  protocol?: string | string[];
+  binaryType?: 'blob' | 'arraybuffer';
+}
 
 export class WebSocketCore<T extends Record<string, any>> {
   // 订阅监听模式的事件key
@@ -25,6 +31,8 @@ export class WebSocketCore<T extends Record<string, any>> {
   static readonly timeout = Symbol('timeout')
   static readonly reconnect = Symbol('reconnect')
 
+  // socket 的一些其他配置
+  private socketConfig?: SocketConfig;
   // 发布订阅模式 事件总线
   public eventEmitter!: EventEmitter;
   // 注册连接方法
@@ -59,6 +67,7 @@ export class WebSocketCore<T extends Record<string, any>> {
     this.hdDataValidtor = options.hdDataValidtor
     this.timeoutReconnect = options.timeoutReconnect || true
     this.eventEmitter = eventEmitter
+    this.socketConfig = options.socketConfig
   }
 
   /**
@@ -72,6 +81,7 @@ export class WebSocketCore<T extends Record<string, any>> {
     // 防止多实例连接
     if (this.ws && !this.ws.closed) this.ws.complete()
     this.ws = webSocket({
+      ...this.socketConfig,
       url,
       openObserver: {
         next: (e: Event) => {
@@ -104,6 +114,7 @@ export class WebSocketCore<T extends Record<string, any>> {
    * @param msg 消息体
    */
   public send(msg: T) {
+    this.eventEmitter.emit('send', msg)
     this.ws && this.ws.next(msg)
   }
 
@@ -137,7 +148,7 @@ export class WebSocketCore<T extends Record<string, any>> {
   private hearBeat() {
     this.intervaler = timer(0, this.hearBeatTime).subscribe(() => {
       const hdData = this.hdDataGenerator()
-      this.send(hdData)
+      this.ws.next(hdData)
       this.hdQueue.push(hdData)
       this.timer && this.timer.unsubscribe()
       this.timer = timer(this.timerIntervaler).subscribe(() => {
