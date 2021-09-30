@@ -179,7 +179,7 @@ export class Fetch {
       return response
     }).catch(err => {
       this.cache.delete(requestSetKey)
-      throw new Error(err)
+      throw err
     })
     requestCache && (requestCache.cancel = source.cancel)
 
